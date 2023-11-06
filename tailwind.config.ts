@@ -8,77 +8,31 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
-  theme: {
-    extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+  // darkMode: "class",
+  plugins: [nextui({
+    themes: {
+      light: {},
+      dark: {
+        colors: {
+          background: '',
+          foreground: '',
+          divider: '',
+          overlay: '',
+          focus: '',
+          content1: '',
+          content2: '',
+          content3: '',
+          content4: '',
+
+          default: '',
+          primary: '',
+          secondary: '',
+          success: '',
+          warning: '',
+          danger: '',
+        }
       },
     },
-    // colors: {
-    //   backgroundPrimaryLight: '',
-    //   backgroundPrimaryMain: '',
-    //   backgroundPrimaryDark: '',
-    //
-    //   backgroundSecondaryLight: '',
-    //   backgroundSecondaryMain: '',
-    //   backgroundSecondaryDark: '',
-    //
-    //   backgroundTertiaryLight: '',
-    //   backgroundTertiaryMain: '',
-    //   backgroundTertiaryDark: '',
-    //
-    //   successLight: '',
-    //   successMain: '',
-    //   successDark: '',
-    //
-    //   errorLight: '',
-    //   errorMain: '',
-    //   errorDark: '',
-    //
-    //   warningLight: '',
-    //   warningMain: '',
-    //   warningDark: '',
-    //
-    //   infoLight: '',
-    //   infoMain: '',
-    //   infoDark: '',
-    //
-    //   primaryLight: '',
-    //   primaryMain: '',
-    //   primaryDark: '',
-    //
-    //   secondaryLight: '',
-    //   secondaryMain: '',
-    //   secondaryDark: '',
-    //
-    //   textPrimaryLight: '',
-    //   textPrimaryMain: '',
-    //   textPrimaryDark: '',
-    //
-    //   textPrimaryInvertLight: '',
-    //   textPrimaryInvertMain: '',
-    //   textPrimaryInvertDark: '',
-    //
-    //   textSecondaryLight: '',
-    //   textSecondaryMain: '',
-    //   textSecondaryDark: '',
-    //
-    //   textTertiaryLight: '',
-    //   textTertiaryMain: '',
-    //   textTertiaryDark: '',
-    //
-    //   borderPrimaryLight: '',
-    //   borderPrimaryMain: '',
-    //   borderPrimaryDark: '',
-    //
-    //   borderSecondaryLight: '',
-    //   borderSecondaryMain: '',
-    //   borderSecondaryDark: '',
-    // }
-  },
-  // darkMode: "class",
-  plugins: [nextui()],
+  })],
 }
 export default config
