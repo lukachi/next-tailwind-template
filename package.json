@@ -2,6 +2,10 @@
   "name": "web-client-colony",
   "version": "0.1.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/custom/custom.git"
+  },
   "gitHooks": {
     "pre-commit": "yarn lint",
     "pre-push": "yarn rsc"
