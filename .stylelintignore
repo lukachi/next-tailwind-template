@@ -1,0 +1,5 @@
+src/styles/reset.scss
+static
+dist
+stats.html
+{**/*,*}.{js,ts,jsx,tsx,html}

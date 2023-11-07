@@ -78,10 +78,7 @@ function _generateDefaultFieldState(
   }
 }
 
-export const useFormValidation = (
-  formSchema: FormSchema,
-  validationRules: ValidationRules,
-) => {
+export const useFormValidation = (formSchema: FormSchema, validationRules: ValidationRules) => {
   const [fieldsToTouchStack, setFieldsToTouchStack] = useState<string[]>([])
 
   const [isFieldsValid, setIsFieldsValid] = useState(false)
@@ -115,9 +112,7 @@ export const useFormValidation = (
     [_getValidationDefaultState],
   )
 
-  const [validationState, setValidationState] = useState<ValidationState>(
-    validationDefaultState,
-  )
+  const [validationState, setValidationState] = useState<ValidationState>(validationDefaultState)
 
   const _validateField = useCallback(
     (
@@ -127,9 +122,7 @@ export const useFormValidation = (
       fieldValue: unknown,
       accumulator: ValidationFieldState,
       cachedResult: ValidationFieldState,
-    ):
-      | ValidationFieldState
-      | { [x: string | number]: ValidationFieldState } => {
+    ): ValidationFieldState | { [x: string | number]: ValidationFieldState } => {
       if (typeof validator == 'function') {
         const { isValid, message } = validator(fieldValue)
 
@@ -166,8 +159,7 @@ export const useFormValidation = (
           errors,
         }
       } else if (validatorKey === '$every') {
-        if (!Array.isArray(fieldValue))
-          throw new Error(`${fieldKey}: is not an array`)
+        if (!Array.isArray(fieldValue)) throw new Error(`${fieldKey}: is not an array`)
 
         return fieldValue.reduce((acc, el, index) => {
           return {
@@ -186,8 +178,7 @@ export const useFormValidation = (
         return {
           [validatorKey]: Object.entries(validator).reduce(
             (acc, [_validatorKey, _validatorValue]) => {
-              const isValidatorValueFunction =
-                typeof _validatorValue === 'function'
+              const isValidatorValueFunction = typeof _validatorValue === 'function'
               const isValidatorValueEvery = _validatorKey === '$every'
 
               const _cachedResult =
@@ -196,9 +187,7 @@ export const useFormValidation = (
                   : get(cachedResult, _validatorKey)
 
               const _fieldKey =
-                isValidatorValueFunction || isValidatorValueEvery
-                  ? fieldKey
-                  : _validatorKey
+                isValidatorValueFunction || isValidatorValueEvery ? fieldKey : _validatorKey
 
               const _fieldValue =
                 isValidatorValueFunction || isValidatorValueEvery
@@ -206,9 +195,7 @@ export const useFormValidation = (
                   : get(fieldValue, _validatorKey)
 
               const _accumulator =
-                isValidatorValueFunction || isValidatorValueEvery
-                  ? acc
-                  : get(acc, _fieldKey)
+                isValidatorValueFunction || isValidatorValueEvery ? acc : get(acc, _fieldKey)
 
               const validatedNestedField = _validateField(
                 _validatorKey,
@@ -221,9 +208,7 @@ export const useFormValidation = (
 
               return {
                 ...acc,
-                ...(isValidatorValueFunction ||
-                isValidatorValueEvery ||
-                _fieldKey === _validatorKey
+                ...(isValidatorValueFunction || isValidatorValueEvery || _fieldKey === _validatorKey
                   ? { ...validatedNestedField }
                   : { [_fieldKey]: validatedNestedField }),
               }
@@ -259,24 +244,18 @@ export const useFormValidation = (
                 }
               : {
                   ...cloneDeep(
-                    get(
-                      validationState[fieldName],
-                      validatorKey,
-                      {} as ValidationFieldState,
-                    ),
+                    get(validationState[fieldName], validatorKey, {} as ValidationFieldState),
                   ),
                 }
 
-          const fieldKey =
-            isValidatorFunction || isValidatorEvery ? fieldName : validatorKey
+          const fieldKey = isValidatorFunction || isValidatorEvery ? fieldName : validatorKey
 
           const fieldValue =
             isValidatorFunction || isValidatorEvery
               ? formSchema[fieldName]
               : get(formSchema[fieldName], validatorKey)
 
-          const accumulator =
-            isValidatorFunction || isValidatorEvery ? acc : get(acc, fieldKey)
+          const accumulator = isValidatorFunction || isValidatorEvery ? acc : get(acc, fieldKey)
 
           const validatedField = _validateField(
             validatorKey,
@@ -319,9 +298,7 @@ export const useFormValidation = (
       }
 
       if (fieldsToTouchStack.includes(fieldPath)) {
-        setFieldsToTouchStack(prevState => [
-          ...prevState.filter(el => el !== fieldPath),
-        ])
+        setFieldsToTouchStack(prevState => [...prevState.filter(el => el !== fieldPath)])
       }
 
       setValidationState(prevState => {
@@ -361,17 +338,12 @@ export const useFormValidation = (
 
       if (!validationField && !Object.keys(formSchema).includes(fieldPath)) {
         return ''
-      } else if (
-        validationField?.errors &&
-        !Object.entries(validationField.errors)[0]
-      ) {
+      } else if (validationField?.errors && !Object.entries(validationField.errors)[0]) {
         return ''
       }
 
       return (
-        (validationField?.isError &&
-          Object.entries(validationField?.errors)[0][1]?.message) ||
-        ''
+        (validationField?.isError && Object.entries(validationField?.errors)[0][1]?.message) || ''
       )
     },
     [formSchema, validationState],

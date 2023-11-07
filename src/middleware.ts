@@ -1,10 +1,10 @@
-import {NextRequest} from 'next/server'
-import {createI18nMiddleware} from 'next-international/middleware'
+import { NextRequest } from 'next/server'
+import { createI18nMiddleware } from 'next-international/middleware'
 
 const DEFAULT_LOCALE = 'en'
 const ACCEPTED_LOCALES = [DEFAULT_LOCALE]
 
-type SupportedLocale = typeof ACCEPTED_LOCALES[number] | null
+type SupportedLocale = (typeof ACCEPTED_LOCALES)[number] | null
 
 const I18nMiddleware = createI18nMiddleware<typeof ACCEPTED_LOCALES>({
   locales: [DEFAULT_LOCALE],

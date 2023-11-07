@@ -88,7 +88,7 @@ $media-breakpoints: (
 
   &::-webkit-scrollbar-thumb {
     background: var(--secondary-main);
-    border: toRem(4) solid rgba(var(--black-rgb), 0);
+    border: toRem(4) solid rgb(var(--black-rgb) / 0);
     background-clip: padding-box;
     border-radius: toRem(100);
   }
@@ -115,8 +115,8 @@ $media-breakpoints: (
   align-items: center;
   border-radius: toRem(12);
   background: var(--background-secondary-main);
-  box-shadow: toRem(0) toRem(5) toRem(14) toRem(0) rgba(0, 0, 0, 0.04),
-    toRem(0) toRem(1) toRem(1) toRem(0) rgba(0, 0, 0, 0.05),
-    toRem(0) toRem(6) toRem(24) toRem(0) rgba(0, 0, 0, 0.03);
+  box-shadow: toRem(0) toRem(5) toRem(14) toRem(0) rgb(0 0 0 / 0.04),
+    toRem(0) toRem(1) toRem(1) toRem(0) rgb(0 0 0 / 0.05),
+    toRem(0) toRem(6) toRem(24) toRem(0) rgb(0 0 0 / 0.03);
   padding: toRem(24);
 }

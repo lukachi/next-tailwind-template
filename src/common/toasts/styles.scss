@@ -113,18 +113,18 @@
   height: toRem(2);
 
   .Toastify__toast--success & {
-    background: var(--text-primary-invert-main);
+    background: var(--text-primary-invert-main, var(--toastify-color-success));
   }
 
   .Toastify__toast--error & {
-    background: var(--text-primary-invert-main);
+    background: var(--text-primary-invert-main, var(--toastify-color-error));
   }
 
   .Toastify__toast--warning & {
-    background: var(--text-primary-invert-main);
+    background: var(--text-primary-invert-main, var(--toastify-color-warning));
   }
 
   .Toastify__toast--info & {
-    background: var(--text-primary-invert-main);
+    background: var(--text-primary-invert-main, var(--toastify-color-info));
   }
 }

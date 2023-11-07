@@ -15,7 +15,6 @@ export const useViewportSizes = () => {
     assignVhCssVariable()
     window.addEventListener('resize', assignVhCssVariableDebounced)
 
-    return () =>
-      window.removeEventListener('resize', assignVhCssVariableDebounced)
+    return () => window.removeEventListener('resize', assignVhCssVariableDebounced)
   })
 }
