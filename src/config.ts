@@ -1,25 +1,22 @@
-import { Metadata } from 'next'
+import { Metadata, Viewport } from 'next'
 
 const env = (value?: string): string => value ?? ''
 
 export const CONFIG = {
   APP_URL: env(process.env.NEXT_PUBLIC_URL),
-  APP_NAME: '',
-  APP_DESCRIPTION: '',
+  APP_NAME: env(process.env.NEXT_PUBLIC_APP_NAME),
+  APP_DESCRIPTION: env(process.env.NEXT_PUBLIC_APP_DESCRIPTION),
 } as const
 
 export const METADATA: Metadata = {
+  icons: {
+    icon: '/branding/favicon-32x32.png',
+    apple: '/branding/apple-touch-icon.png',
+  },
+
   metadataBase: new URL(CONFIG.APP_URL),
   description: CONFIG.APP_DESCRIPTION,
   applicationName: CONFIG.APP_NAME,
-  themeColor: [
-    { media: '(prefers-color-scheme: dark)', color: '#000000' },
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-  ],
-  colorScheme: 'dark light',
-  viewport:
-    'width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0',
-  creator: 'Rarimo Team',
   openGraph: {
     description: CONFIG.APP_DESCRIPTION,
     locale: 'en_GB',
@@ -31,6 +28,20 @@ export const METADATA: Metadata = {
     description: CONFIG.APP_DESCRIPTION,
     images: '/preview-card.jpg',
   },
+}
+
+export const VIEWPORT: Viewport = {
+  width: 'device-width',
+  height: 'device-height',
+  initialScale: 1,
+  minimumScale: 1,
+  maximumScale: 5,
+
+  themeColor: [
+    { media: '(prefers-color-scheme: dark)', color: '#000000' },
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+  ],
+  colorScheme: 'dark light',
 }
 
 const createPageTitle = (pageName: string): string => {
@@ -51,5 +62,11 @@ export const createMetadata = (pageName: string): Metadata => {
       ...METADATA.twitter,
       title,
     },
+  }
+}
+
+export const createViewport = (): Viewport => {
+  return {
+    ...VIEWPORT,
   }
 }

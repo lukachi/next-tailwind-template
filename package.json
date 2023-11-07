@@ -2,13 +2,18 @@
   "name": "web-client-colony",
   "version": "0.1.0",
   "private": true,
+  "gitHooks": {
+    "pre-commit": "yarn lint",
+    "pre-push": "yarn rsc"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "yarn lint:scripts && yarn lint:styles && yarn tsc --noEmit",
     "lint:scripts": "next lint",
-    "lint:styles": "stylelint \"src/**/*.{css,sass,scss}\" --max-warnings=0"
+    "lint:styles": "stylelint \"src/**/*.{css,sass,scss}\" --max-warnings=0",
+    "rsc": "node scripts/release-sanity-check.mjs"
   },
   "dependencies": {
     "@distributedlab/tools": "^1.0.0-rc.7",
@@ -50,7 +55,8 @@
     "stylelint-prettier": "^4.0.2",
     "stylelint-scss": "^5.3.1",
     "tailwindcss": "^3.3.0",
-    "typescript": "^5"
+    "typescript": "^5",
+    "yorkie": "^2.0.0"
   },
   "packageManager": "yarn@4.0.1"
 }
