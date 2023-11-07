@@ -1,5 +1,5 @@
-import { NextRequest } from 'next/server'
-import { createI18nMiddleware } from 'next-international/middleware'
+import {NextRequest} from 'next/server'
+import {createI18nMiddleware} from 'next-international/middleware'
 
 const DEFAULT_LOCALE = 'en'
 const ACCEPTED_LOCALES = [DEFAULT_LOCALE]
@@ -25,7 +25,7 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next|.*\\..*).*)'],
+  matcher: ['/((?!_next|.*\\\\..*).*)'],
 }
 
 function localeFromRequest(request: NextRequest) {

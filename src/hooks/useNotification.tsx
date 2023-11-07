@@ -86,21 +86,6 @@ export const useNotification = () => {
         IconElement = defaultIconElements[messageType]
       }
 
-      console.log({
-        toastId: `${messageType}-${uuidv4()}`,
-        icon: false,
-        type: {
-          default: NOTIFICATION_TYPE.default,
-          info: NOTIFICATION_TYPE.info,
-          success: NOTIFICATION_TYPE.success,
-          error: NOTIFICATION_TYPE.error,
-          warning: NOTIFICATION_TYPE.warning,
-        }[messageType] as TypeOptions,
-        className: 'default-toast',
-        autoClose: MINUTE / 2,
-        closeOnClick: false,
-      }, IconElement)
-
       return toast(
         () => (
           <DefaultToast title={title} message={message} IconElement={IconElement} />
