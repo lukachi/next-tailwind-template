@@ -23,7 +23,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang={params.locale}>
-      <body className={montserrat.className}>
+      <body
+        className={[montserrat.className, 'dark', 'text-foreground', 'bg-background'].join(' ')}
+      >
         <I18nProviderClient locale={params.locale} fallback={<div />}>
           {children}
           <ToastsManager />

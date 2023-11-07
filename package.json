@@ -1,10 +1,10 @@
 {
   "name": "web-client-colony",
-  "version": "0.1.0",
+  "version": "1.0.0-rc.0",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/custom/custom.git"
+    "url": "https://github.com/lukachi/next-tailwind-template.git"
   },
   "gitHooks": {
     "pre-commit": "yarn lint",

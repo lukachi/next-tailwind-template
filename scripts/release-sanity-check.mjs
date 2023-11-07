@@ -2,8 +2,8 @@ import fs from 'fs'
 import path, { dirname } from 'path'
 import chalk from 'chalk'
 import childProcess from 'child_process'
-import { fileURLToPath } from 'url'
-import { createRequire } from 'module'
+import {fileURLToPath} from "url";
+import {createRequire} from "module";
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -53,9 +53,9 @@ function validateChangelogHasVersion() {
 function validateChangelogHasVersionOnTop() {
   const todayYmd = new Date().toISOString().split('T')[0] // YYYY-MM-DD
   const releaseTagIsNotTopRe = new RegExp(
-    '## \\[\\d+\\.\\d+\\.\\d+((-rc|-x)\\.\\d+)?\\][\\s\\S]*' + // any other tag
+      '## \\[\\d+\\.\\d+\\.\\d+((-rc|-x)\\.\\d+)?\\][\\s\\S]*' + // any other tag
       `## \\[${escapeRe(VERSION)}\\] - ${todayYmd}`, // the new
-    'i',
+      'i',
   )
 
   if (releaseTagIsNotTopRe.test(CHANGELOG_MD_CONTENT)) {
@@ -65,18 +65,20 @@ function validateChangelogHasVersionOnTop() {
 
 function validateChangelogAnchorsLegend() {
   const baseRepoUrl = PACKAGE_JSON.repository.url.replace('.git', '')
+
   const anyReleaseTagRe = /## \[\d+\.\d+\.\d+((-rc|-x)\.\d+)?\] - \d{4}-\d{2}-\d{2}/gi
 
   const expectedAnchorsLegend =
-    `[Unreleased]: ${baseRepoUrl}/compare/${VERSION}...HEAD\n` +
-    CHANGELOG_MD_CONTENT.match(anyReleaseTagRe)
-      .map(tag => tag.match(/\[(.*)\]/)[1])
-      .map((cur, curId, arr) => {
-        return curId === arr.length - 1
-          ? `[${cur}]: ${baseRepoUrl}/tags/${cur}`
-          : `[${cur}]: ${baseRepoUrl}/compare/${arr[curId + 1]}...${cur}`
-      })
-      .join('\n')
+      `[Unreleased]: ${baseRepoUrl}/compare/${VERSION}...HEAD\n` +
+      CHANGELOG_MD_CONTENT
+        .match(anyReleaseTagRe)
+        .map(tag => tag.match(/\[(.*)\]/)[1])
+        .map((cur, curId, arr) => {
+          return curId === arr.length - 1
+              ? `[${cur}]: ${baseRepoUrl}/tags/${cur}`
+              : `[${cur}]: ${baseRepoUrl}/compare/${arr[curId + 1]}...${cur}`
+        })
+        .join('\n')
 
   if (!CHANGELOG_MD_CONTENT.includes(expectedAnchorsLegend)) {
     issuesFound.push(`The anchors legend is invalid, should be:\n${expectedAnchorsLegend}`)
