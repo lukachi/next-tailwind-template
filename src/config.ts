@@ -6,6 +6,11 @@ export const CONFIG = {
   APP_URL: env(process.env.NEXT_PUBLIC_URL),
   APP_NAME: env(process.env.NEXT_PUBLIC_APP_NAME),
   APP_DESCRIPTION: env(process.env.NEXT_PUBLIC_APP_DESCRIPTION),
+
+  GITHUB_ID: env(process.env.NEXT_GITHUB_ID),
+  GITHUB_SECRET: env(process.env.NEXT_GITHUB_SECRET),
+  GOOGLE_ID: env(process.env.NEXT_GOOGLE_ID),
+  GOOGLE_SECRET: env(process.env.NEXT_GOOGLE_SECRET),
 } as const
 
 export const METADATA: Metadata = {
