@@ -1,24 +1,21 @@
 'use client'
 
-import { Avatar } from '@nextui-org/avatar'
+import { Badge } from '@nextui-org/badge'
 import { Button } from '@nextui-org/button'
 import { Card, CardBody, CardHeader } from '@nextui-org/card'
 import { Divider } from '@nextui-org/divider'
+import { ConnectWallet } from '@thirdweb-dev/react'
 
 import { bus, BusEvents } from '@/helpers'
 import { useUser } from '@/modules/Auth'
 
 export default function TestToast() {
-  const { userDetails, signOut, signIn } = useUser()
+  const { user, isLoggedIn } = useUser()
 
   return (
     <Card>
       <CardHeader className='flex gap-24'>
-        {userDetails.image && <Avatar src={userDetails.image} />}
-
-        <div className='flex flex-col'>
-          <p className='text-md'>{userDetails.name}</p>
-        </div>
+        {user?.address && <Badge color='success'>{user.address}</Badge>}
       </CardHeader>
       <Divider />
       <CardBody>
@@ -31,12 +28,7 @@ export default function TestToast() {
           BUY
         </Button>
 
-        <Button color='success' className='font-bold' radius='sm' onClick={() => signIn()}>
-          SIGN IN
-        </Button>
-        <Button color='danger' className='font-bold' radius='sm' onClick={() => signOut()}>
-          SIGN OUT
-        </Button>
+        <ConnectWallet theme={'dark'} modalSize={'wide'} />
       </CardBody>
     </Card>
   )

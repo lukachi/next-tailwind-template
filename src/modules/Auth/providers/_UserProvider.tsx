@@ -1,44 +1,28 @@
 'use client'
 
-import { type User } from 'next-auth'
-import { useSession } from 'next-auth/react'
-import { signIn, signOut } from 'next-auth/react'
+import type { User } from '@thirdweb-dev/auth'
+import { useUser } from '@thirdweb-dev/react'
 import { createContext, ReactNode, useMemo } from 'react'
 
 export const UserContext = createContext<{
   isLoggedIn: boolean
 
-  userDetails: User
-
-  signIn: typeof signIn
-  signOut: typeof signOut
+  user?: User
 }>({
   isLoggedIn: false,
-
-  userDetails: {} as User,
-
-  signIn,
-  signOut,
 })
 
 export default function UserProvider({ children }: { children: ReactNode }) {
-  const session = useSession()
+  const { isLoggedIn, user } = useUser()
 
-  const userDetails = useMemo<User>(() => session?.data?.user as User, [session?.data?.user])
-
-  const isLoggedIn = useMemo(() => {
-    return !!session?.data?.user
-  }, [session?.data?.user])
+  // TODO: should "refresh token" be implemented for oauth?
 
   return (
     <UserContext.Provider
       value={{
         isLoggedIn,
 
-        userDetails,
-
-        signIn,
-        signOut,
+        user,
       }}
     >
       {children}
