@@ -2,14 +2,12 @@ import '@/styles/index.scss'
 
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
-import { getServerSession } from 'next-auth'
 import type { ReactNode } from 'react'
 
+import { ToastsManager } from '@/components'
 import { createMetadata, createViewport } from '@/config'
 import { I18nProviderClient } from '@/locales/client'
 import { AuthProvider } from '@/modules/Auth'
-
-import { ToastsManager } from '../../components/common'
 
 const montserrat = Montserrat({ subsets: ['latin'] })
 
@@ -24,15 +22,13 @@ export default async function RootLayout({
   children: ReactNode
   params: { locale: string }
 }) {
-  const session = await getServerSession()
-
   return (
     <html lang={params.locale}>
       <body
         className={[montserrat.className, 'dark', 'text-foreground', 'bg-background'].join(' ')}
       >
         <I18nProviderClient locale={params.locale} fallback={<div />}>
-          <AuthProvider session={session}>{children}</AuthProvider>
+          <AuthProvider>{children}</AuthProvider>
           <ToastsManager />
         </I18nProviderClient>
       </body>

@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 
 [Unreleased]
 
+## [1.0.0-rc.1] - 2023-11-09
+### Added
+- auth
+
+[Unreleased]
+
 ## [1.0.0-rc.0] - 2023-11-07
 ### Added
 - toasts
@@ -23,7 +29,8 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 
 - Initiated project
 
-[Unreleased]: https://github.com/lukachi/next-tailwind-template/compare/1.0.0-rc.0...HEAD
+[Unreleased]: https://github.com/lukachi/next-tailwind-template/compare/1.0.0-rc.1...HEAD
+[1.0.0-rc.1]: https://github.com/lukachi/next-tailwind-template/compare/1.0.0-rc.0...1.0.0-rc.1
 [1.0.0-rc.0]: https://github.com/lukachi/next-tailwind-template/tags/1.0.0-rc.0
 
 [Keep a Changelog]: https://keepachangelog.com/en/1.0.0/
