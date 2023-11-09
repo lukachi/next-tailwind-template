@@ -1,18 +1,25 @@
 'use client'
 
+import { Avatar } from '@nextui-org/avatar'
 import { Button } from '@nextui-org/button'
 import { Card, CardBody, CardHeader } from '@nextui-org/card'
 import { Divider } from '@nextui-org/divider'
-import { signIn, signOut, useSession } from 'next-auth/react'
 
 import { bus, BusEvents } from '@/helpers'
+import { useUser } from '@/modules/Auth'
 
 export default function TestToast() {
-  const session = useSession()
+  const { userDetails, signOut, signIn } = useUser()
 
   return (
     <Card>
-      <CardHeader>{JSON.stringify(session)}</CardHeader>
+      <CardHeader className='flex gap-24'>
+        {userDetails.image && <Avatar src={userDetails.image} />}
+
+        <div className='flex flex-col'>
+          <p className='text-md'>{userDetails.name}</p>
+        </div>
+      </CardHeader>
       <Divider />
       <CardBody>
         <Button

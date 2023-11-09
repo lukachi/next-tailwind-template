@@ -44,7 +44,6 @@ export const localeMiddleware: MiddlewareFactory = next => {
   return async (request: NextRequest, event: NextFetchEvent) => {
     await next(request, event)
 
-    // FIXME: get response from i18nMiddleware, place in request and use next()
     return i18nMiddleware(request)
   }
 }

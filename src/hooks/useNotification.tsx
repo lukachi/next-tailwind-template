@@ -1,6 +1,6 @@
 'use client'
 
-import '@/common/toasts/styles.scss'
+import '@/components/common/toasts/styles.scss'
 
 import { ExclamationCircleIcon } from '@heroicons/react/24/outline'
 import isObject from 'lodash/isObject'
@@ -8,9 +8,10 @@ import { ReactElement, useCallback, useMemo } from 'react'
 import { toast, type TypeOptions } from 'react-toastify'
 import { v4 as uuidv4 } from 'uuid'
 
-import { DefaultToast } from '@/common'
 import { useI18n } from '@/locales/client'
 import { NotificationObjectPayload } from '@/types'
+
+import { DefaultToast } from '../components/common'
 
 const NOTIFICATION_TYPE = {
   success: 'success',

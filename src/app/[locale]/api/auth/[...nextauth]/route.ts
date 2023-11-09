@@ -1,1 +1,1 @@
-export { default as GET, default as POST } from '@/auth'
+export { api as GET, api as POST } from '@/modules/Auth'

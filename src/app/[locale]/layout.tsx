@@ -5,10 +5,11 @@ import { Montserrat } from 'next/font/google'
 import { getServerSession } from 'next-auth'
 import type { ReactNode } from 'react'
 
-import { ToastsManager } from '@/common'
 import { createMetadata, createViewport } from '@/config'
 import { I18nProviderClient } from '@/locales/client'
-import { AuthProvider } from '@/providers'
+import { AuthProvider } from '@/modules/Auth'
+
+import { ToastsManager } from '../../components/common'
 
 const montserrat = Montserrat({ subsets: ['latin'] })
 
